@@ -95,7 +95,8 @@ public class ConsultationController {
         //Create an object of TestRequest class and use the assignForConsultation() method of testRequestUpdateService to assign the particular id to the current user
         // return the above created object
         // For reference check the method assignForLabTest() method from LabRequestController class
-    	return testRequestUpdateService.assignForConsultation(id, doctor);
+    	TestRequest assignedTestReq =  testRequestUpdateService.assignForConsultation(id, doctor);
+    	return assignedTestReq;
             
         }catch (AppException e) {
             throw asBadRequest(e.getMessage());
@@ -121,7 +122,8 @@ public class ConsultationController {
         // Create an object of TestRequest class and make use of updateConsultation() method from testRequestUpdateService class
         //to update the current test request id with the testResult details by the current user(object created)
         // For reference check the method updateLabTest() method from LabRequestController class
-    	return testRequestUpdateService.updateConsultation(id, testResult, doctor);
+    	TestRequest updatedTestReq = testRequestUpdateService.updateConsultation(id, testResult, doctor);
+    	return updatedTestReq;
 
         } catch (ConstraintViolationException e) {
             throw asConstraintViolation(e);
